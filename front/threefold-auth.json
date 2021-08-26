@@ -1,0 +1,9 @@
+{
+    "name": "ThreeFold Auth",
+    "slug": "threefold-auth",
+    "description": "Authenticate with ThreeFold accounts.",
+    "type": "auth",
+    "module": "taigaContrib.threefoldAuth",
+    "template": "/plugins/threefold-auth/threefold-auth.html",
+    "js": "plugins/threefold-auth/threefold-auth.js"
+}
