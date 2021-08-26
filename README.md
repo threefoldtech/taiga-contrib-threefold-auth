@@ -149,6 +149,14 @@ and use:
 
 not yet
 
+## disable the normal login and registeration:
+If you like to keep only Threefold login and registration and disable the default login and the public registration, include in your `dist/conf.json` these values
+
+```json
+  "defaultLoginEnabled": true,
+  "publicRegisterEnabled": true,
+```
+
 ## Taiga Documentation
 
 Currently, we have authored three main documentation hubs:
