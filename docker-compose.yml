@@ -57,7 +57,7 @@ services:
       - taiga
 
   taiga-back:
-    image: threefolddev/taiga-back-threefold:0.0.1
+    image: threefolddev/taiga-back-threefold:latest
     environment: *default-back-environment
     volumes: *default-back-volumes
     networks:
@@ -92,7 +92,7 @@ services:
       - taiga
 
   taiga-front:
-    image: threefolddev/taiga-front-threefold:0.0.1
+    image: threefolddev/taiga-front-threefold:latest
     environment:
       TAIGA_URL: "http://localhost:9000"
       TAIGA_WEBSOCKETS_URL: "ws://localhost:9000"

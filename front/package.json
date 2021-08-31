@@ -1,6 +1,6 @@
 {
   "name": "taiga-contrib-threefold-auth",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Taiga contrib plugin for threefold authentication",
   "main": "index.js",
   "repository": {

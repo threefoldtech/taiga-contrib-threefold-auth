@@ -58,7 +58,7 @@ The make file contains the basic blocks to locally build the UI and docker conta
 make build
 ```
 
-you can use `THREEFOLD_TAG` environmental setting to set the tag for the created images before running the below command to build the images. it default to 1.0.0
+you can use `THREEFOLD_TAG` environmental setting to set the tag for the created images before running the below command to build the images. it default to `latest`
 
 you can use `TAIGA_VERSION`environmental setting to set the taiga version, otherwise it will pull the `latest` tag.
 
@@ -70,7 +70,7 @@ export TAIGA_VERSION=6.3.3
 make build
 ```
 
-other commands available, `make publish` will push the images to `threefolddev` Docker Hub with tag `THREEFOLD_TAG` if set, otherwise `1.0.0`
+other commands available, `make publish` will push the images to `threefolddev` Docker Hub with tag `THREEFOLD_TAG` if set, otherwise `latest`
 
 ### Docker-compose file (ported from https://github.com/taigaio/taiga-docker)
 you can run the Docker-compose file to get Taiga with the plugin enabled up and running.
@@ -97,7 +97,7 @@ docker-compose down
 Take the latest release of this repository, for instance:
 
 ```
-export TAIGA_CONTRIB_THREEFOLD_AUTH_TAG=1.0.0
+export TAIGA_CONTRIB_THREEFOLD_AUTH_TAG=1.1.0
 ```
 
 ### Taiga Back

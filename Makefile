@@ -1,5 +1,5 @@
 ifndef THREEFOLD_TAG
-override THREEFOLD_TAG = 1.0.0
+override THREEFOLD_TAG = latest
 endif
 
 all: clean test build
