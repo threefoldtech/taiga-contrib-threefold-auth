@@ -82,6 +82,9 @@ make sure to set the mandatory env settings `THREEFOLD_API_APP_SECRET`, `THREEFO
 docker-compose up -d
 ```
 
+visit `http://127.0.0.1:9000/`
+note: on dev setup you will need to replace `https` with `http` in the browser address bar when the browser redirect back to taiga from the threefold auth server after you login successfully
+
 to destroy the environments:
 
 ```bash
