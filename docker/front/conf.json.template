@@ -11,7 +11,7 @@
     "themes": ["taiga"],
     "defaultTheme": "taiga",
     "defaultLoginEnabled": false,
-    "publicRegisterEnabled": "${PUBLIC_REGISTER_ENABLED}",
+    "publicRegisterEnabled": ${PUBLIC_REGISTER_ENABLED},
     "feedbackEnabled": true,
     "supportUrl": "https://resources.taiga.io",
     "privacyPolicyUrl": null,
