@@ -17,7 +17,7 @@ setup(
     keywords = 'taiga, threefold, auth, plugin',
     author = 'Sameh Abouelsaad',
     author_email = 'samehabouelsaad@gmail.com',
-    url = 'https://github.com/kaleidos-ventures/taiga-contrib-gitlab-auth',
+    url = 'https://github.com/threefoldtech/taiga-contrib-threefold-auth',
     license = 'MPL 2.0',
     include_package_data = True,
     packages = find_packages(),

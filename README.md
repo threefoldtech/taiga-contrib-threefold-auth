@@ -2,6 +2,93 @@ Taiga contrib threefold auth
 =========================
 The Taiga plugin for threefold authentication (Ported from official Gitlab auth).
 
+to install it, you can use one of two ways:
+1 Using Docker and Docker-compose
+2 Using manual installation
+
+# 1- Docker Setup
+Taiga up and running with integrated threefold authentication in a simple two steps, using docker and docker-compose.
+
+Compatible with Taiga 4.2.1, 5.x, 6
+## Docker
+This plugin is compatible with the official taiga docker images 😃
+
+https://github.com/taigaio/taiga-docker
+
+This project builds 2 images based off the images provided by taiga. This should allow another customizations to continue to work.
+
+The following will show the changes needed to the default docker-compose file to install the threefold plugin.
+
+### Config 
+The 2 images:
+ - threefolddev/taiga-front-threefold
+ - threefolddev/taiga-back-threefold
+
+Use the following environmental settings to configure
+
+```bash
+THREEFOLD_API_APP_SECRET : "<APP SECRET>"
+THREEFOLD_API_APP_PUBLIC_KEY = "<YOUR-THREEFOLD-APP-PUBLIC-KEY>"
+```
+
+other optionals environmental settings to override when needed
+
+```bash
+THREEFOLD_URL : "https://login.threefold.me"  # optional. can be used to override the default url
+THREEFOLD_OPENKYC_URL: "https://openkyc.live/verification/verify-sei"  # optional. can be used to override the default url
+THREEFOLD_APP_ID: "<YOUR-HOST-NAME>" # optional as plugin will detect the hostname. can be used to override the default url if needed
+```
+
+### Docker building
+
+For Docker building for new release make sure that the following files are coppiced into the docker directory
+
+**Backend:**
+Copy https://raw.githubusercontent.com/taigaio/taiga-back/master/docker/config.py
+
+**Frontend:**
+copy the config.json and config_env_subst.sh from https://github.com/taigaio/taiga-front/tree/master/docker
+
+
+# Building
+
+The make file contains the basic blocks to locally build the UI and docker containers. 
+
+```bash
+make build
+```
+
+you can use `THREEFOLD_TAG` environmental setting to set the tag for the created images before running the below command to build the images. it default to 1.0.0
+
+you can use `TAIGA_VERSION`environmental setting to set the taiga version, otherwise it will pull the `latest` tag.
+
+for example, to build new `taiga-back-threefold` and `taiga-front-threefold` images with tag `0.0.2` and taiga version set to `6.3.3`
+
+```bash
+export THREEFOLD_TAG=0.0.2
+export TAIGA_VERSION=6.3.3
+make build
+```
+
+other commands available, `make publish` will push the images to `threefolddev` Docker Hub with tag `THREEFOLD_TAG` if set, otherwise `1.0.0`
+
+### Docker-compose file (ported from https://github.com/taigaio/taiga-docker)
+you can run the Docker-compose file to get Taiga with the plugin enabled up and running.
+make sure to set the mandatory env settings `THREEFOLD_API_APP_SECRET`, `THREEFOLD_API_APP_PUBLIC_KEY` in the `docker-compose.yml` file.
+
+- you can create and destroy these environments in just a few commands:
+
+```bash
+docker-compose up -d
+```
+
+to destroy the environments:
+
+```bash
+docker-compose down
+```
+
+# 2- Manual Setup
 ## Production env
 
 Take the latest release of this repository, for instance:
@@ -165,25 +252,6 @@ Currently, we have authored three main documentation hubs:
 - **[Documentation](https://docs.taiga.io/)**: If you need to install Taiga on your own server, this is the place to find some guides.
 - **[Taiga Resources](https://resources.taiga.io)**: This page is intended to be the support reference page for the users.
 
-## Taiga Bug reports
-
-If you **find a bug** in Taiga you can always report it:
-
-- in [Taiga issues](https://tree.taiga.io/project/taiga/issues). **This is the preferred way**
-- in [Github issues](https://github.com/kaleidos-ventures/taiga-contrib-threefold-auth/issues)
-- send us a mail to support@taiga.io if is a bug related to [tree.taiga.io](https://tree.taiga.io)
-- send us a mail to security@taiga.io if is a **security bug**
-
-One of our fellow Taiga developers will search, find and hunt it as soon as possible.
-
-Please, before reporting a bug, write down how can we reproduce it, your operating system, your browser and version, and if it's possible, a screenshot. Sometimes it takes less time to fix a bug if the developer knows how to find it.
-
-## Taiga Community
-
-If you **need help to setup Taiga**, want to **talk about some cool enhancemnt** or you have **some questions**, please write us to our [mailing list](https://groups.google.com/d/forum/taigaio).
-
-If you want to be up to date about announcements of releases, important changes and so on, you can subscribe to our newsletter (you will find it by scrolling down at [https://taiga.io](https://www.taiga.io/)) and follow [@taigaio](https://twitter.com/taigaio) on Twitter.
-
-## Contribute to Taiga
-
-There are many different ways to contribute to Taiga's platform, from patches, to documentation and UI enhancements, just find the one that best fits with your skills. Check out our detailed [contribution guide](https://resources.taiga.io/extend/how-can-i-contribute/)
+## Contributions
+My thanks to all the people who have added to the plugin
+The whole taiga team who wrote the github plugin that this plugin is based off.
