@@ -70,7 +70,11 @@ def _post(url:str, params:dict, headers:dict) -> dict:
                                   "error": data.get("error", "")})
     return data
 
-
+def removesuffix(text, suffix):
+    # for python 3.8 and older as str.removesuffix is python 3.9+ only
+    if suffix and text.endswith(suffix):
+        return text[:-len(suffix)]
+    return text
 ######################################################
 ## Simple calls
 ######################################################
@@ -105,12 +109,12 @@ def tf_login(signedAttempt:str, state:str):
     _post(OPENKYC_URL, params={"signedEmailIdentifier": sei}, headers=HEADERS)
 
     # return user info
-    data = {"email": email, "username": username}
-    return User(id=data["username"],
-                username=data["username"].removesuffix(".3bot"),
-                email=(data["email"]),
-                full_name=data["username"].removesuffix(".3bot"),
-                bio=(data.get("bio", None) or ""))
+    username_no_suffix = removesuffix(username, ".3bot")
+    return User(id=username,
+                username=username_no_suffix,
+                email=email,
+                full_name=username_no_suffix,
+                bio="")
 
 def check_signed_attempt(signedAttempt:str):
     """
