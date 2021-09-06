@@ -14,6 +14,7 @@ COPY 30_config_env_subst.sh /docker-entrypoint.d/30_config_env_subst.sh
 RUN chmod +x /docker-entrypoint.d/30_config_env_subst.sh
 
 ENV PUBLIC_REGISTER_ENABLED=false
+ENV ENABLE_THREEFOLD=true
 # change this key. check the documentation for more info.
 ENV THREEFOLD_API_APP_PUBLIC_KEY="K4nQYVJJrcV0Y/6QuqeM3FKPGffdKC5/3HpOa/BmewY="
 # optional env settings. If these are not set, then hardcoded values are used

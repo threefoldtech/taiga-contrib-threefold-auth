@@ -7,6 +7,7 @@ RUN cd taiga-contrib-threefold-auth/back; pip install -e .
 COPY config.py /taiga-back/settings/config.py
 
 ENV PUBLIC_REGISTER_ENABLED=False
+ENV ENABLE_THREEFOLD=True
 # change this key. check the documentation for more info.
 ENV THREEFOLD_API_APP_SECRET="2W/qhWFeMF6XawIPuEnJ3dWge49bYZNhSsELF64daus="
 # optional env settings. If these are not set, then hardcoded values are used
