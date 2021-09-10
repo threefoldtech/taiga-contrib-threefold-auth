@@ -31,6 +31,19 @@ THREEFOLD_API_APP_SECRET : "<APP SECRET>"
 THREEFOLD_API_APP_PUBLIC_KEY = "<YOUR-THREEFOLD-APP-PUBLIC-KEY>"
 ```
 
+To get the `THREEFOLD_API_APP_SECRET` and `THREEFOLD_API_APP_PUBLIC_KEY` do:
+
+```python
+import nacl
+import nacl.signing
+sk = nacl.signing.SigningKey.generate()
+sk_to_b64 = sk.encode(encoder=nacl.encoding.Base64Encoder).decode()  # this is the signing key. use it for THREEFOLD_API_APP_SECRET setting.
+
+vk = sk.verify_key
+pubkey = vk.to_curve25519_public_key().encode(encoder=nacl.encoding.Base64Encoder).decode()  # this is the app public key. you will need it for the front end `threeFoldAppPubKey` setting.
+
+``` 
+
 other optionals environmental settings to override when needed
 
 ```bash
