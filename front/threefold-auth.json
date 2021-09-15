@@ -5,5 +5,5 @@
     "type": "auth",
     "module": "taigaContrib.threefoldAuth",
     "template": "/plugins/threefold-auth/threefold-auth.html",
-    "js": "plugins/threefold-auth/threefold-auth.js"
+    "js": "/plugins/threefold-auth/threefold-auth.js"
 }
