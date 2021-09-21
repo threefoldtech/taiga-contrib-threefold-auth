@@ -26,7 +26,7 @@ to install it, you can use one of three ways:
 -   install a chart 
     
     ```bash
-    helm install test-helm-charts/taiga --set ingress.host="domain" --set threefoldlogin.apiAppSecret="login-api-secret-key" --set threefoldlogin.apiAppPublicKey="login-api-public-key" --set backendSecretKey="secret" --set global.ingress.certresolver=gridca
+    helm install test-helm-charts/taiga --set ingress.host=domain --set threefoldlogin.apiAppSecret=login-api-secret-key --set threefoldlogin.apiAppPublicKey=login-api-public-key --set backendSecretKey=secret --set global.ingress.certresolver=gridca
     ```
 -   `backendSecretKey`:
     A secret key for a particular Django installation. This is used to provide cryptographic signing, and should be set to a unique, unpredictable value.
@@ -50,16 +50,16 @@ to install it, you can use one of three ways:
     ```
 
 -   `emailSettings`
-    By default, email is configured with the console backend, which means that the emails will be shown in the stdout. If you have an smtp service, make sure to set these values using --set , for example:
+    By default, email is configured with the console backend, which means that the emails will be shown in the stdout. If you have an smtp service, make sure to update these values:
 
-     - emailSettings.emailEnabled=true
-     - emailSettings.emailFrom="taiga@mycompany.net"
-     - emailSettings.emailUseTls="True"
-     - emailSettings.emailUseSsl="False"
-     - emailSettings.emailSmtpHost="smtp.gmail.com"
-     - emailSettings.emailSmtpPort=587
-     - emailSettings.emailSmtpUser="user@gmail.com"
-     - emailSettings.emailSmtpPassword="your-password"
+     - emailSettings.emailEnabled: true
+     - emailSettings.emailFrom: taiga@mycompany.net
+     - emailSettings.emailUseTls: "True"
+     - emailSettings.emailUseSsl: "False"
+     - emailSettings.emailSmtpHost: smtp.gmail.com
+     - emailSettings.emailSmtpPort: 587
+     - emailSettings.emailSmtpUser: user@gmail.com
+     - emailSettings.emailSmtpPassword: your-password
 
     note : You cannot use both (TLS and SSL) at the same time!
 
