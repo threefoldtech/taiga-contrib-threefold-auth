@@ -30,12 +30,13 @@ to install it, you can use one of three ways:
     ```
 -   `backendSecretKey`:
     A secret key for a particular Django installation. This is used to provide cryptographic signing, and should be set to a unique, unpredictable value.
-    there are default working vaues in the values.yaml but you should generate new pairs as those should be unique and secrets.
+    
     you can generate one using something like this:
     ```
     TAIGA_SECRET_KEY=`< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-64};echo;`
     ```
 -   `threefoldlogin.apiAppSecret` and `THREEFOLD_API_APP_PUBLIC_KEY`:
+    there are default working values in the values.yaml but you should generate new pairs as those should be set to a unique, unpredictable values.
     To get the `threefoldlogin.apiAppSecret` and `THREEFOLD_API_APP_PUBLIC_KEY` do:
 
     ```python
