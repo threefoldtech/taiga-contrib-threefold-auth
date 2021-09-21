@@ -2,11 +2,67 @@ Taiga contrib threefold auth
 =========================
 The Taiga plugin for threefold authentication (Ported from official Gitlab auth).
 
-to install it, you can use one of two ways:
-1 Using Docker and Docker-compose
-2 Using manual installation
+to install it, you can use one of three ways:
+- Using taiga helm chart
+- Using Docker and Docker-compose
+- Using manual installation
 
-# 1- Docker Setup
+# Taiga Helm Chart Setup
+
+## Installing Taiga chart
+
+-   Adding the repo to your helm 
+
+    ```bash
+    helm repo add marketplace https://threefoldtech.github.io/vdc-solutions-charts/
+    ```
+-   install a chart 
+
+    ```bash
+    helm install marketplace/taiga
+    ```
+    
+## installing the chart with different parameters
+-   install a chart 
+    
+    ```bash
+    helm install test-helm-charts/taiga --set ingress.host="domain" --set threefoldlogin.apiAppSecret="login-api-secret-key" --set threefoldlogin.apiAppPublicKey="login-api-public-key" --set backendSecretKey="secret" --set global.ingress.certresolver=gridca
+    ```
+-   `backendSecretKey`:
+    A secret key for a particular Django installation. This is used to provide cryptographic signing, and should be set to a unique, unpredictable value.
+    there are default working vaues in the values.yaml but you should generate new pairs as those should be unique and secrets.
+    you can generate one using something like this:
+    ```
+    TAIGA_SECRET_KEY=`< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-64};echo;`
+    ```
+-   `threefoldlogin.apiAppSecret` and `THREEFOLD_API_APP_PUBLIC_KEY`:
+    To get the `threefoldlogin.apiAppSecret` and `THREEFOLD_API_APP_PUBLIC_KEY` do:
+
+    ```python
+    import nacl
+    import nacl.signing
+    sk = nacl.signing.SigningKey.generate()
+    sk_to_b64 = sk.encode(encoder=nacl.encoding.Base64Encoder).decode()  # this is the signing key. use it for threefoldlogin.apiAppSecret setting.
+
+    vk = sk.verify_key
+    pubkey = vk.to_curve25519_public_key().encode(encoder=nacl.encoding.Base64Encoder).decode()  # this is the app public key. you will need it for the front end `threefoldlogin.apiAppPublicKey` setting.
+    ```
+
+-   `emailSettings`
+    By default, email is configured with the console backend, which means that the emails will be shown in the stdout. If you have an smtp service, make sure to set these values using --set , for example:
+
+     - emailSettings.emailEnabled=true
+     - emailSettings.emailFrom="taiga@mycompany.net"
+     - emailSettings.emailUseTls="True"
+     - emailSettings.emailUseSsl="False"
+     - emailSettings.emailSmtpHost="smtp.gmail.com"
+     - emailSettings.emailSmtpPort=587
+     - emailSettings.emailSmtpUser="user@gmail.com"
+     - emailSettings.emailSmtpPassword="your-password"
+
+    note : You cannot use both (TLS and SSL) at the same time!
+
+# 2- Docker Setup
 Taiga up and running with integrated threefold authentication in a simple two steps, using docker and docker-compose.
 
 Compatible with Taiga 4.2.1, 5.x, 6
@@ -104,7 +160,7 @@ to destroy the environments:
 docker-compose down
 ```
 
-# 2- Manual Setup
+# 3- Manual Setup
 ## Production env
 
 Take the latest release of this repository, for instance:
