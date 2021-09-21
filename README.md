@@ -7,7 +7,7 @@ to install it, you can use one of three ways:
 - Using Docker and Docker-compose
 - Using manual installation
 
-# Taiga Helm Chart Setup
+# 1- Taiga Helm Chart Setup
 
 ## Installing Taiga chart
 
