@@ -35,9 +35,9 @@ to install it, you can use one of three ways:
     ```
     TAIGA_SECRET_KEY=`< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-64};echo;`
     ```
--   `threefoldlogin.apiAppSecret` and `THREEFOLD_API_APP_PUBLIC_KEY`:
+-   `threefoldlogin.apiAppSecret` and `threefoldlogin.apiAppPublicKey `:
     there are default working values in the values.yaml but you should generate new pairs as those should be set to a unique, unpredictable values.
-    To get the `threefoldlogin.apiAppSecret` and `THREEFOLD_API_APP_PUBLIC_KEY` do:
+    To get the `threefoldlogin.apiAppSecret` and `threefoldlogin.apiAppPublicKey ` do:
 
     ```python
     import nacl
