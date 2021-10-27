@@ -96,7 +96,7 @@ services:
     environment:
       TAIGA_URL: "http://localhost:9000"
       TAIGA_WEBSOCKETS_URL: "ws://localhost:9000"
-      TAIGA_SUBPATH: "/"
+      TAIGA_SUBPATH: ""
       ENABLE_THREEFOLD: "true"
       THREEFOLD_URL : "https://login.threefold.me"
       THREEFOLD_APP_ID: ""
