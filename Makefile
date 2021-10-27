@@ -11,7 +11,7 @@ all: clean test build
 build: build-front build-back
 
 build-front:
-	cd front && npm install && npm run build
+	cd front && npm run preinstall && npm install && npm run build
 	docker build --build-arg TAIGA_VERSION=$(TAIGA_VERSION) --no-cache docker/front -t threefolddev/taiga-front-threefold:$(THREEFOLD_TAG) 
 	
 build-back:
