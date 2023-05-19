@@ -47,6 +47,7 @@ x-volumes:
 services:
   taiga-db:
     image: postgres:12.3
+    restart: unless-stopped
     environment:
       POSTGRES_DB: taiga
       POSTGRES_USER: taiga
